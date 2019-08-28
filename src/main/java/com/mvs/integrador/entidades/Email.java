@@ -2,18 +2,23 @@ package com.mvs.integrador.entidades;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Email implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String remetente;
 	private String destinatario;
 	private String empresa;
 	private String corpo;
-	private List<String> cco;
-	private List<String> cc;
 	
 	public Email() {
 		
@@ -66,28 +71,10 @@ public class Email implements Serializable {
 		this.corpo = corpo;
 	}
 
-	public List<String> getCco() {
-		return cco;
-	}
-
-	public void setCco(List<String> cco) {
-		this.cco = cco;
-	}
-
-	public List<String> getCc() {
-		return cc;
-	}
-
-	public void setCc(List<String> cc) {
-		this.cc = cc;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cc == null) ? 0 : cc.hashCode());
-		result = prime * result + ((cco == null) ? 0 : cco.hashCode());
 		result = prime * result + ((corpo == null) ? 0 : corpo.hashCode());
 		result = prime * result + ((destinatario == null) ? 0 : destinatario.hashCode());
 		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
@@ -105,16 +92,7 @@ public class Email implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Email other = (Email) obj;
-		if (cc == null) {
-			if (other.cc != null)
-				return false;
-		} else if (!cc.equals(other.cc))
-			return false;
-		if (cco == null) {
-			if (other.cco != null)
-				return false;
-		} else if (!cco.equals(other.cco))
-			return false;
+		
 		if (corpo == null) {
 			if (other.corpo != null)
 				return false;
